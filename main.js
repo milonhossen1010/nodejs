@@ -1,17 +1,20 @@
 const http = require("http");
-var URL = require("url");
+let fs = require("fs");
+
 
 let server = http.createServer(function (req, res) {
 
-    let link = "https://milonpc.com/contact?age=20";
-    let urlObj = URL.parse(link, true);
+    if (req.url=="/"){
 
-    let host = urlObj.host;
-    let pathname = urlObj.pathname;
-    let searchName = urlObj.search;
 
-    res.write(`HostName : ${host}, pathName : ${pathname}, search : ${searchName}`);
-    res.end();
+        fs.readFile("home.html", function (err, data) {
+
+            res.writeHead(200, {"Content-Type":"text/html"});
+            res.write(data);
+            res.end();
+
+        });
+    }
 
 });
 
