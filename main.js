@@ -7,13 +7,18 @@ let server = http.createServer(function (req, res) {
     if (req.url=="/"){
 
 
-        fs.readFile("home.html", function (err, data) {
+        // fs.readFile("home.html", function (err, data) {
+        //
+        //     res.writeHead(200, {"Content-Type":"text/html"});
+        //     res.write(data);
+        //     res.end();
+        //
+        // });
 
-            res.writeHead(200, {"Content-Type":"text/html"});
-            res.write(data);
-            res.end();
-
-        });
+        let myData = fs.readFileSync("home.html");
+        res.writeHead(200, {"Content-Type":"text/html"});
+        res.write(myData);
+        res.end();
     }
 
 });
