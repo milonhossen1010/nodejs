@@ -1,23 +1,17 @@
 const http = require("http");
+var URL = require("url");
 
 let server = http.createServer(function (req, res) {
-    if (req.url == "/"){
-        res.writeHead(200, {"Content-Type" : "text/html"});
-        res.write("<h1>This is home page</h1>");
-        res.end();
-    }
 
-    else if (req.url == "/about"){
-        res.writeHead(200, {"Content-Type" : "text/html"});
-        res.write("<h1>This is About us page</h1>");
-        res.end();
-    }
+    let link = "https://milonpc.com/contact?age=20";
+    let urlObj = URL.parse(link, true);
 
-    else if (req.url == "/contact"){
-        res.writeHead(200, {"Content-Type" : "text/html"});
-        res.write("<h1>This is contact us page</h1>");
-        res.end();
-    }
+    let host = urlObj.host;
+    let pathname = urlObj.pathname;
+    let searchName = urlObj.search;
+
+    res.write(`HostName : ${host}, pathName : ${pathname}, search : ${searchName}`);
+    res.end();
 
 });
 
