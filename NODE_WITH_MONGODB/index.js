@@ -7,8 +7,10 @@ MongoClient.connect(URL, function (error, myMongoClient) {
         console.log("database connection fail");
     }else {
         console.log("database connect successful.");
-        // dataInsert(myMongoClient);
-        deleteOneData(myMongoClient);
+         // dataInsert(myMongoClient);
+        //deleteOneData(myMongoClient);
+
+         DeleteAllItem(myMongoClient);
     }
 });
 
@@ -49,6 +51,20 @@ let deleteOneData = (myMongoClient)=>{
             console.log("Data delete fail");
         }else {
             console.log("Data delete successful");
+        }
+
+    });
+};
+
+let DeleteAllItem = (myMongoClient) => {
+    let Database = myMongoClient.db("school");
+    let MyCollection = Database.collection("students");
+    MyCollection.deleteMany(function (error, resultObj) {
+
+        if (error){
+            console.log("Data delete fail");
+        }else {
+            console.log(resultObj.deletedCount + " items deleted.");
         }
 
     });
