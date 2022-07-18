@@ -7,10 +7,11 @@ MongoClient.connect(URL, function (error, myMongoClient) {
         console.log("database connection fail");
     }else {
         console.log("database connect successful.");
-         // dataInsert(myMongoClient);
+          // dataInsert(myMongoClient);
         //deleteOneData(myMongoClient);
 
-         DeleteAllItem(myMongoClient);
+         // DeleteAllItem(myMongoClient);
+        FindOneMethod(myMongoClient);
     }
 });
 
@@ -19,7 +20,7 @@ let dataInsert = (myMongoClient)=> {
     let myDatabase = myMongoClient.db("school");
     let myCollection = myDatabase.collection("students");
     let  myData = {
-        id:"3",
+        id:"2",
         name: "Milon",
         location: "Joypurhat",
         email : "milonhossen1010@gmail.com",
@@ -70,4 +71,17 @@ let DeleteAllItem = (myMongoClient) => {
     });
 };
 
+
+//Find one
+let FindOneMethod = (myMongoClient) => {
+    let MyDatabase = myMongoClient.db("school");
+    let MyCollection = MyDatabase.collection("students");
+
+    let findData = {id: "2"}
+    MyCollection.findOne(findData, function (error, result) {
+
+        console.log(result);
+
+    });
+}
 
