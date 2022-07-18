@@ -15,7 +15,8 @@ MongoClient.connect(URL, function (error, myMongoClient) {
         // FindAllMethod(myMongoClient);
         // FindAllDataByProjection(myMongoClient);
         // FindAllDataByQuery(myMongoClient);
-        FindAllDataByLimit(myMongoClient);
+        // FindAllDataByLimit(myMongoClient);
+        FindAllDataBySort(myMongoClient);
     }
 });
 
@@ -146,14 +147,26 @@ let FindAllDataByLimit = (myMongoClient) => {
     let MyDatabase = myMongoClient.db("school");
     let MyCollection = MyDatabase.collection("students");
 
-
-
-
     MyCollection.find().limit(2).toArray(function(error, result) {
 
         console.log(result);
 
     });
 
+};
+
+
+//Find all data by sort
+let FindAllDataBySort = (myMongoClient) => {
+    let MyDatabase = myMongoClient.db("school");
+    let MyCollection = MyDatabase.collection("students");
+
+    let sortPattern = {id: -1};
+
+    MyCollection.find().sort(sortPattern).toArray(function(error, result) {
+
+        console.log(result);
+
+    });
 
 };
