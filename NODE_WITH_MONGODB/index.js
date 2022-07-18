@@ -12,7 +12,8 @@ MongoClient.connect(URL, function (error, myMongoClient) {
 
          // DeleteAllItem(myMongoClient);
         // FindOneMethod(myMongoClient);
-        FindAllMethod(myMongoClient);
+        // FindAllMethod(myMongoClient);
+        FindAllDataByProjection(myMongoClient);
     }
 });
 
@@ -99,3 +100,21 @@ let FindAllMethod = (myMongoClient) => {
 
     });
 }
+
+//Find all data by projection
+let FindAllDataByProjection = (myMongoClient) => {
+    let MyDatabase = myMongoClient.db("school");
+    let MyCollection = MyDatabase.collection("students");
+
+    let ItemObject = {};
+    let ItemProjection = {projection:{ name: 1 }};
+
+
+    MyCollection.find(ItemObject, ItemProjection).toArray(function(error, result) {
+
+        console.log(result);
+
+    });
+
+
+};
