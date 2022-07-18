@@ -11,7 +11,8 @@ MongoClient.connect(URL, function (error, myMongoClient) {
         //deleteOneData(myMongoClient);
 
          // DeleteAllItem(myMongoClient);
-        FindOneMethod(myMongoClient);
+        // FindOneMethod(myMongoClient);
+        FindAllMethod(myMongoClient);
     }
 });
 
@@ -85,3 +86,16 @@ let FindOneMethod = (myMongoClient) => {
     });
 }
 
+
+//Find all data
+let FindAllMethod = (myMongoClient) => {
+    let MyDatabase = myMongoClient.db("school");
+    let MyCollection = MyDatabase.collection("students");
+
+
+    MyCollection.find().toArray( function (error, result) {
+
+        console.log(result);
+
+    });
+}
