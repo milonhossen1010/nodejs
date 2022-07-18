@@ -17,7 +17,8 @@ MongoClient.connect(URL, function (error, myMongoClient) {
         // FindAllDataByQuery(myMongoClient);
         // FindAllDataByLimit(myMongoClient);
         // FindAllDataBySort(myMongoClient);
-        UpdateData(myMongoClient);
+        // UpdateData(myMongoClient);
+        createMyCollection(myMongoClient);
 
     }
 });
@@ -185,5 +186,15 @@ let UpdateData = (myMongoClient) => {
     MyCollection.updateOne(query, newValue, function (err, result) {
         console.log(result);
     });
+
+};
+
+//Create Collection
+let createMyCollection = (myMongoClient) => {
+
+    let myDatabase = myMongoClient.db("school");
+    myDatabase.createCollection("teachers", function (error, result) {
+        console.log(result);
+    })
 
 };
