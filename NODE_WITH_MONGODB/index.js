@@ -7,7 +7,8 @@ MongoClient.connect(URL, function (error, myMongoClient) {
         console.log("database connection fail");
     }else {
         console.log("database connect successful.");
-        dataInsert(myMongoClient);
+        // dataInsert(myMongoClient);
+        deleteOneData(myMongoClient);
     }
 });
 
@@ -16,7 +17,8 @@ let dataInsert = (myMongoClient)=> {
     let myDatabase = myMongoClient.db("school");
     let myCollection = myDatabase.collection("students");
     let  myData = {
-        name: "Milon Hossen",
+        id:"3",
+        name: "Milon",
         location: "Joypurhat",
         email : "milonhossen1010@gmail.com",
         phone : "01750850216"
@@ -32,6 +34,24 @@ let dataInsert = (myMongoClient)=> {
 
     });
 
+
+};
+
+
+let deleteOneData = (myMongoClient)=>{
+    let myDatabase = myMongoClient.db("school");
+    let myCollection = myDatabase.collection("students");
+
+    let deleteData = {id: "2"}
+    myCollection.deleteOne(deleteData, function (error) {
+
+        if (error){
+            console.log("Data delete fail");
+        }else {
+            console.log("Data delete successful");
+        }
+
+    });
 };
 
 
